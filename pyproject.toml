@@ -1,0 +1,25 @@
+[project]
+name = "fmm-plugin-home-assistant"
+version = "1.0.0"
+description = "Five More Minutes for Home Assistant."
+requires-python = ">=3.13"
+license = { text = "MIT" }
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-p no:cacheprovider"
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "ASYNC"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E501"]
+"custom_components/five_more_minutes/api.py" = ["E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["custom_components"]

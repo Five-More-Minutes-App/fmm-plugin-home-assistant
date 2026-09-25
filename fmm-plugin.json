@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "home-assistant",
+  "name": "Home Assistant",
+  "description": "Start, extend and stop the timer from Home Assistant, follow whether time is running and how much is left, and run automations when time starts, is added, ends, or the computer is locked.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Five More Minutes",
+    "url": "https://github.com/five-more-minutes"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/five-more-minutes/fmm-plugin-home-assistant",
+  "documentation": "https://github.com/five-more-minutes/fmm-plugin-home-assistant#readme",
+  "icon": "icon.png",
+  "categories": ["smart-home", "automation"],
+  "platform": "Home Assistant",
+  "permissions": [
+    {
+      "scope": "state:read",
+      "reason": "Shows whether a timer is running, how much is left, and whether the computer is locked or online, and starts automations when that changes."
+    },
+    {
+      "scope": "timer:start",
+      "reason": "Lets an automation or a dashboard button start a timer, for example when homework time begins."
+    },
+    {
+      "scope": "timer:extend",
+      "reason": "Lets an automation or a button add time to a running timer, for example when a chore is done."
+    },
+    {
+      "scope": "timer:stop",
+      "reason": "Lets an automation end the time now, which locks the computer, for example at bedtime."
+    },
+    {
+      "scope": "timer:cancel",
+      "reason": "Lets an automation or a button cancel a running timer without locking the computer."
+    }
+  ],
+  "install": {
+    "steps": [
+      {
+        "title": "Add the integration with HACS",
+        "text": "In Home Assistant open HACS, choose Custom repositories from the menu, add this repository as an Integration, install Five More Minutes, and restart Home Assistant.",
+        "code": "https://github.com/five-more-minutes/fmm-plugin-home-assistant",
+        "link": {
+          "label": "Installing without HACS",
+          "url": "https://github.com/five-more-minutes/fmm-plugin-home-assistant#2-install-the-integration"
+        }
+      },
+      {
+        "title": "Add the computer",
+        "text": "Go to Settings, Devices and services, Add integration, and choose Five More Minutes. Enter these two values when asked for the address and the key.",
+        "code": "Address: {{FMM_URL}}\nAPI key: {{API_KEY}}"
+      },
+      {
+        "title": "Use it",
+        "text": "The computer appears as a device with sensors, an activity event, and buttons for what the key allows. There are also actions for automations: start_timer, extend_timer, end_time and cancel_timer.",
+        "link": {
+          "label": "Automation examples",
+          "url": "https://github.com/five-more-minutes/fmm-plugin-home-assistant#examples"
+        }
+      }
+    ]
+  },
+  "compatibility": {
+    "apiVersion": 1
+  }
+}

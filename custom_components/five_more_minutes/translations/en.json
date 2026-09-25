@@ -1,0 +1,126 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect a computer",
+        "description": "Make an API key in the Five More Minutes portal under Plugins: choose the computer and tick the permissions you want Home Assistant to have. The key opens that one computer, from your home network only.",
+        "data": {
+          "url": "Address of Five More Minutes",
+          "api_key": "API key"
+        },
+        "data_description": {
+          "url": "Where Home Assistant can reach it, for example http://192.168.1.10:5072.",
+          "api_key": "Starts with fmmk_. It is shown only once, when you make it."
+        }
+      },
+      "reauth_confirm": {
+        "title": "Enter a new key",
+        "description": "The key for {computer} stopped working: it may have been revoked or have expired. Make a new one in the portal for the same computer and enter it here.",
+        "data": {
+          "api_key": "API key"
+        }
+      },
+      "reconfigure": {
+        "title": "Change the address or key",
+        "description": "Change how Home Assistant reaches {computer}. The key must be for the same computer.",
+        "data": {
+          "url": "Address of Five More Minutes",
+          "api_key": "API key"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "That is not a web address. Use something like http://192.168.1.10:5072.",
+      "invalid_key": "That does not look like a Five More Minutes key. It starts with fmmk_ and is 81 characters long.",
+      "invalid_auth": "The key was not accepted. It may be wrong, revoked or expired.",
+      "network_only": "Five More Minutes only answers on your home network. Home Assistant has to be on the same network, using its local address.",
+      "cannot_connect": "Could not reach Five More Minutes. Is it running, and is the address right?",
+      "missing_state_permission": "The key does not have the state:read permission, which this integration needs. Make a new key with it ticked.",
+      "unknown": "Something unexpected went wrong."
+    },
+    "abort": {
+      "already_configured": "This computer is already set up. Its address and key have been updated.",
+      "reauth_successful": "The new key works.",
+      "reconfigure_successful": "Saved.",
+      "wrong_computer": "That key is for a different computer, not the one this was set up for."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "timer_running": { "name": "Timer running" },
+      "locked": { "name": "Locked" },
+      "connected": { "name": "Connected" }
+    },
+    "sensor": {
+      "timer_ends": { "name": "Timer ends" },
+      "lock_ends": { "name": "Lock ends" },
+      "minutes_left": { "name": "Minutes left" },
+      "timer_message": { "name": "Timer message" }
+    },
+    "button": {
+      "start_timer": { "name": "Start timer" },
+      "extend_time": { "name": "Add time" },
+      "end_time": { "name": "End time now" },
+      "cancel_timer": { "name": "Cancel timer" }
+    },
+    "number": {
+      "timer_length": { "name": "Timer length" }
+    },
+    "event": {
+      "activity": {
+        "name": "Activity",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "timer_started": "Timer started",
+              "timer_extended": "Time added",
+              "timer_ended": "Timer ended",
+              "locked": "Locked",
+              "unlocked": "Unlocked",
+              "came_online": "Came online",
+              "went_offline": "Went offline"
+            }
+          }
+        }
+      }
+    }
+  },
+  "services": {
+    "start_timer": {
+      "name": "Start timer",
+      "description": "Starts time on a computer. Starting during a lock lifts the lock.",
+      "fields": {
+        "minutes": { "name": "Minutes", "description": "How long to run. Give this or a time to stop at, not both." },
+        "until": { "name": "Until", "description": "The time of day to stop at, in the time zone of the household." },
+        "message": { "name": "Message", "description": "A short note shown on the computer, such as why time was given." }
+      }
+    },
+    "extend_timer": {
+      "name": "Add time",
+      "description": "Adds time to a running timer.",
+      "fields": {
+        "minutes": { "name": "Minutes", "description": "How much to add. Leave empty for the usual five more." }
+      }
+    },
+    "end_time": {
+      "name": "End time now",
+      "description": "Ends the timer now, and starts the lock the rules ask for."
+    },
+    "cancel_timer": {
+      "name": "Cancel timer",
+      "description": "Ends the timer without locking the computer."
+    }
+  },
+  "exceptions": {
+    "missing_permission": { "message": "The key for {computer} does not have the {scope} permission. Make a new key with it ticked; permissions cannot be changed afterwards." },
+    "not_possible": { "message": "Not possible right now: {reason}" },
+    "forbidden": { "message": "The key is not allowed to do that: {reason}" },
+    "cannot_reach": { "message": "Could not reach Five More Minutes: {reason}" },
+    "device_not_found": { "message": "There is no device {device}." },
+    "not_a_computer": { "message": "{device} is not a Five More Minutes computer." },
+    "not_loaded": { "message": "{computer} is not connected right now." },
+    "cannot_connect": { "message": "Could not connect to Five More Minutes: {reason}" },
+    "key_refused": { "message": "Five More Minutes no longer accepts the key. Make a new one in the portal." },
+    "missing_state_permission": { "message": "The key does not have the state:read permission, which this integration needs. Make a new key with it ticked." }
+  }
+}

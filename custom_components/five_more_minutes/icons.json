@@ -1,0 +1,33 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "timer_running": { "default": "mdi:timer-outline", "state": { "on": "mdi:timer-sand" } },
+      "locked": { "default": "mdi:lock-open-variant-outline", "state": { "on": "mdi:lock-clock" } },
+      "connected": { "default": "mdi:lan-disconnect", "state": { "on": "mdi:lan-connect" } }
+    },
+    "sensor": {
+      "timer_ends": { "default": "mdi:timer-sand-complete" },
+      "lock_ends": { "default": "mdi:lock-clock" },
+      "minutes_left": { "default": "mdi:timer-sand" },
+      "timer_message": { "default": "mdi:message-text-outline" }
+    },
+    "button": {
+      "start_timer": { "default": "mdi:play-circle-outline" },
+      "extend_time": { "default": "mdi:timer-plus-outline" },
+      "end_time": { "default": "mdi:timer-off-outline" },
+      "cancel_timer": { "default": "mdi:cancel" }
+    },
+    "number": {
+      "timer_length": { "default": "mdi:timer-cog-outline" }
+    },
+    "event": {
+      "activity": { "default": "mdi:history" }
+    }
+  },
+  "services": {
+    "start_timer": { "service": "mdi:play-circle-outline" },
+    "extend_timer": { "service": "mdi:timer-plus-outline" },
+    "end_time": { "service": "mdi:timer-off-outline" },
+    "cancel_timer": { "service": "mdi:cancel" }
+  }
+}

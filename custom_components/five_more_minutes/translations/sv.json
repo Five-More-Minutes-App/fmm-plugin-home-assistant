@@ -1,0 +1,126 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Anslut en dator",
+        "description": "Skapa en API-nyckel i Five More Minutes-portalen under Tillägg: välj datorn och kryssa i de behörigheter du vill att Home Assistant ska ha. Nyckeln öppnar just den datorn, och bara från ditt hemnätverk.",
+        "data": {
+          "url": "Adress till Five More Minutes",
+          "api_key": "API-nyckel"
+        },
+        "data_description": {
+          "url": "Där Home Assistant når den, till exempel http://192.168.1.10:5072.",
+          "api_key": "Börjar med fmmk_. Den visas bara en gång, när du skapar den."
+        }
+      },
+      "reauth_confirm": {
+        "title": "Ange en ny nyckel",
+        "description": "Nyckeln för {computer} slutade fungera: den kan ha återkallats eller gått ut. Skapa en ny i portalen för samma dator och ange den här.",
+        "data": {
+          "api_key": "API-nyckel"
+        }
+      },
+      "reconfigure": {
+        "title": "Ändra adress eller nyckel",
+        "description": "Ändra hur Home Assistant når {computer}. Nyckeln måste vara för samma dator.",
+        "data": {
+          "url": "Adress till Five More Minutes",
+          "api_key": "API-nyckel"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Det där är ingen webbadress. Använd något som http://192.168.1.10:5072.",
+      "invalid_key": "Det där ser inte ut som en Five More Minutes-nyckel. Den börjar med fmmk_ och är 81 tecken lång.",
+      "invalid_auth": "Nyckeln godtogs inte. Den kan vara fel, återkallad eller ha gått ut.",
+      "network_only": "Five More Minutes svarar bara på ditt hemnätverk. Home Assistant måste vara på samma nätverk och använda den lokala adressen.",
+      "cannot_connect": "Det gick inte att nå Five More Minutes. Är det igång, och stämmer adressen?",
+      "missing_state_permission": "Nyckeln saknar behörigheten state:read, som den här integrationen behöver. Skapa en ny nyckel med den ikryssad.",
+      "unknown": "Något oväntat gick fel."
+    },
+    "abort": {
+      "already_configured": "Den här datorn är redan inställd. Adressen och nyckeln har uppdaterats.",
+      "reauth_successful": "Den nya nyckeln fungerar.",
+      "reconfigure_successful": "Sparat.",
+      "wrong_computer": "Den nyckeln är för en annan dator, inte den här inställningen gjordes för."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "timer_running": { "name": "Timer igång" },
+      "locked": { "name": "Låst" },
+      "connected": { "name": "Ansluten" }
+    },
+    "sensor": {
+      "timer_ends": { "name": "Timern slutar" },
+      "lock_ends": { "name": "Låsningen slutar" },
+      "minutes_left": { "name": "Minuter kvar" },
+      "timer_message": { "name": "Timermeddelande" }
+    },
+    "button": {
+      "start_timer": { "name": "Starta timer" },
+      "extend_time": { "name": "Lägg till tid" },
+      "end_time": { "name": "Avsluta tiden nu" },
+      "cancel_timer": { "name": "Avbryt timer" }
+    },
+    "number": {
+      "timer_length": { "name": "Timerlängd" }
+    },
+    "event": {
+      "activity": {
+        "name": "Aktivitet",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "timer_started": "Timer startad",
+              "timer_extended": "Tid tillagd",
+              "timer_ended": "Timer slut",
+              "locked": "Låst",
+              "unlocked": "Upplåst",
+              "came_online": "Kom online",
+              "went_offline": "Gick offline"
+            }
+          }
+        }
+      }
+    }
+  },
+  "services": {
+    "start_timer": {
+      "name": "Starta timer",
+      "description": "Startar tid på en dator. Att starta under en låsning hävs låsningen.",
+      "fields": {
+        "minutes": { "name": "Minuter", "description": "Hur länge den ska gå. Ange detta eller en tid att sluta vid, inte båda." },
+        "until": { "name": "Till", "description": "Klockslaget att sluta vid, i hushållets tidszon." },
+        "message": { "name": "Meddelande", "description": "En kort notering som visas på datorn, till exempel varför tid gavs." }
+      }
+    },
+    "extend_timer": {
+      "name": "Lägg till tid",
+      "description": "Lägger till tid på en pågående timer.",
+      "fields": {
+        "minutes": { "name": "Minuter", "description": "Hur mycket som ska läggas till. Lämna tomt för de vanliga fem till." }
+      }
+    },
+    "end_time": {
+      "name": "Avsluta tiden nu",
+      "description": "Avslutar timern nu och startar den låsning som reglerna säger."
+    },
+    "cancel_timer": {
+      "name": "Avbryt timer",
+      "description": "Avslutar timern utan att låsa datorn."
+    }
+  },
+  "exceptions": {
+    "missing_permission": { "message": "Nyckeln för {computer} saknar behörigheten {scope}. Skapa en ny nyckel med den ikryssad; behörigheter kan inte ändras i efterhand." },
+    "not_possible": { "message": "Går inte just nu: {reason}" },
+    "forbidden": { "message": "Nyckeln får inte göra det: {reason}" },
+    "cannot_reach": { "message": "Det gick inte att nå Five More Minutes: {reason}" },
+    "device_not_found": { "message": "Det finns ingen enhet {device}." },
+    "not_a_computer": { "message": "{device} är inte en Five More Minutes-dator." },
+    "not_loaded": { "message": "{computer} är inte ansluten just nu." },
+    "cannot_connect": { "message": "Kunde inte ansluta till Five More Minutes: {reason}" },
+    "key_refused": { "message": "Five More Minutes godtar inte längre nyckeln. Skapa en ny i portalen." },
+    "missing_state_permission": { "message": "Nyckeln saknar behörigheten state:read, som den här integrationen behöver. Skapa en ny nyckel med den ikryssad." }
+  }
+}

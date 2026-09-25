@@ -1,0 +1,47 @@
+start_timer:
+  target:
+    device:
+      integration: five_more_minutes
+  fields:
+    minutes:
+      example: 30
+      selector:
+        number:
+          min: 1
+          max: 1440
+          step: 1
+          unit_of_measurement: min
+          mode: box
+    until:
+      example: "20:00:00"
+      selector:
+        time:
+    message:
+      example: Homework
+      selector:
+        text:
+
+extend_timer:
+  target:
+    device:
+      integration: five_more_minutes
+  fields:
+    minutes:
+      example: 10
+      selector:
+        number:
+          min: 1
+          max: 1440
+          step: 1
+          unit_of_measurement: min
+          mode: box
+
+end_time:
+  target:
+    device:
+      integration: five_more_minutes
+
+cancel_timer:
+  target:
+    device:
+      integration: five_more_minutes

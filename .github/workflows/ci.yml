@@ -1,0 +1,52 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - run: pip install pytest-homeassistant-custom-component ruff mypy
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: mypy custom_components --ignore-missing-imports
+      - run: pytest
+
+  hacs:
+    # HACS's own check that the repository can be added as a custom repository.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hacs/action@main
+        with:
+          category: integration
+
+  hassfest:
+    # Home Assistant's own check of the manifest, translations and services.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: home-assistant/actions/hassfest@master
+
+  manifest:
+    # The check the plugin registry runs on a pull request, so a mistake is found here first.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: five-more-minutes/fmm-plugin-registry
+          path: registry
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+        working-directory: registry
+      - run: node registry/scripts/validate.mjs --manifest fmm-plugin.json
