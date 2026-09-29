@@ -1,7 +1,7 @@
 # Five More Minutes for Home Assistant
 
 See and control the screen time on your child's computer from Home Assistant.
-[Five More Minutes](https://github.com/five-more-minutes/FiveMoreMinutes) decides *when* a computer is
+[Five More Minutes](https://github.com/five-more-minutes/fmm-app) decides *when* a computer is
 usable; this integration puts it in your dashboards and automations: start a timer, add time, end it, and
 react when time starts, runs out, or the computer is locked.
 
