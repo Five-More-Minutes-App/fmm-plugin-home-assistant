@@ -1,8 +1,11 @@
 start_timer:
-  target:
-    device:
-      integration: five_more_minutes
   fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: five_more_minutes
+          multiple: true
     minutes:
       example: 30
       selector:
@@ -22,10 +25,13 @@ start_timer:
         text:
 
 extend_timer:
-  target:
-    device:
-      integration: five_more_minutes
   fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: five_more_minutes
+          multiple: true
     minutes:
       example: 10
       selector:
@@ -37,11 +43,19 @@ extend_timer:
           mode: box
 
 end_time:
-  target:
-    device:
-      integration: five_more_minutes
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: five_more_minutes
+          multiple: true
 
 cancel_timer:
-  target:
-    device:
-      integration: five_more_minutes
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: five_more_minutes
+          multiple: true

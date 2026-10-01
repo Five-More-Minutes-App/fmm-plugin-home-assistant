@@ -1,7 +1,7 @@
 # Five More Minutes for Home Assistant
 
 See and control the screen time on your child's computer from Home Assistant.
-[Five More Minutes](https://github.com/five-more-minutes/fmm-app) decides *when* a computer is
+[Five More Minutes](https://github.com/Five-More-Minutes-App/fmm-app) decides *when* a computer is
 usable; this integration puts it in your dashboards and automations: start a timer, add time, end it, and
 react when time starts, runs out, or the computer is locked.
 
@@ -51,7 +51,7 @@ Or press **Add** on this plugin's page in the marketplace and the portal makes t
 ### 2. Install the integration
 
 **With HACS** (recommended): **HACS → ⋮ → Custom repositories**, add
-`https://github.com/five-more-minutes/fmm-plugin-home-assistant` as an **Integration**, then install
+`https://github.com/Five-More-Minutes-App/fmm-plugin-home-assistant` as an **Integration**, then install
 **Five More Minutes** and restart Home Assistant.
 
 **By hand**: copy the `custom_components/five_more_minutes` folder into your Home Assistant's
@@ -178,7 +178,7 @@ mypy custom_components
 Home Assistant does not run natively on Windows; use WSL or a container (the CI does).
 
 - `coordinator.py`: follows the computer, and schedules the moments Home Assistant already knows (an end, a new minute).
-- `api.py` and `events.py`: the client and the event helper, vendored unchanged from [fmm-plugin-template-python](https://github.com/five-more-minutes/fmm-plugin-template-python).
+- `api.py` and `events.py`: the client and the event helper, vendored unchanged from [fmm-plugin-template-python](https://github.com/Five-More-Minutes-App/fmm-plugin-template-python).
 - Most tests use a scripted fake service (fast, deterministic); `tests/test_wire.py` runs the real client over real HTTP against a faithful mock of the service.
 
 ### What has and has not been tested

@@ -9,8 +9,8 @@
     "url": "https://github.com/five-more-minutes"
   },
   "license": "MIT",
-  "repository": "https://github.com/five-more-minutes/fmm-plugin-home-assistant",
-  "documentation": "https://github.com/five-more-minutes/fmm-plugin-home-assistant#readme",
+  "repository": "https://github.com/Five-More-Minutes-App/fmm-plugin-home-assistant",
+  "documentation": "https://github.com/Five-More-Minutes-App/fmm-plugin-home-assistant#readme",
   "icon": "icon.png",
   "categories": ["smart-home", "automation"],
   "platform": "Home Assistant",
@@ -41,10 +41,10 @@
       {
         "title": "Add the integration with HACS",
         "text": "In Home Assistant open HACS, choose Custom repositories from the menu, add this repository as an Integration, install Five More Minutes, and restart Home Assistant.",
-        "code": "https://github.com/five-more-minutes/fmm-plugin-home-assistant",
+        "code": "https://github.com/Five-More-Minutes-App/fmm-plugin-home-assistant",
         "link": {
           "label": "Installing without HACS",
-          "url": "https://github.com/five-more-minutes/fmm-plugin-home-assistant#2-install-the-integration"
+          "url": "https://github.com/Five-More-Minutes-App/fmm-plugin-home-assistant#2-install-the-integration"
         }
       },
       {
@@ -57,7 +57,7 @@
         "text": "The computer appears as a device with sensors, an activity event, and buttons for what the key allows. There are also actions for automations: start_timer, extend_timer, end_time and cancel_timer.",
         "link": {
           "label": "Automation examples",
-          "url": "https://github.com/five-more-minutes/fmm-plugin-home-assistant#examples"
+          "url": "https://github.com/Five-More-Minutes-App/fmm-plugin-home-assistant#examples"
         }
       }
     ]
