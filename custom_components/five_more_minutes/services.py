@@ -9,7 +9,6 @@ from __future__ import annotations
 from datetime import time
 from typing import Any
 
-import voluptuous as vol
 from homeassistant.config_entries import ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID
 from homeassistant.core import HomeAssistant, ServiceCall
@@ -30,6 +29,7 @@ from .const import (
     SERVICE_START_TIMER,
 )
 from .coordinator import FmmCoordinator
+from .schema import vol
 
 _DEVICES: dict[Any, Any] = {vol.Required(ATTR_DEVICE_ID): vol.All(cv.ensure_list, [cv.string])}
 _MINUTES = vol.All(vol.Coerce(int), vol.Range(min=1, max=MAX_TIMER_MINUTES))

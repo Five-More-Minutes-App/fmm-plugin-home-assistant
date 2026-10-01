@@ -90,6 +90,7 @@
       "name": "Start timer",
       "description": "Starts time on a computer. Starting during a lock lifts the lock.",
       "fields": {
+        "device_id": { "name": "Computer", "description": "The computer or computers to act on." },
         "minutes": { "name": "Minutes", "description": "How long to run. Give this or a time to stop at, not both." },
         "until": { "name": "Until", "description": "The time of day to stop at, in the time zone of the household." },
         "message": { "name": "Message", "description": "A short note shown on the computer, such as why time was given." }
@@ -99,16 +100,23 @@
       "name": "Add time",
       "description": "Adds time to a running timer.",
       "fields": {
+        "device_id": { "name": "Computer", "description": "The computer or computers to act on." },
         "minutes": { "name": "Minutes", "description": "How much to add. Leave empty for the usual five more." }
       }
     },
     "end_time": {
       "name": "End time now",
-      "description": "Ends the timer now, and starts the lock the rules ask for."
+      "description": "Ends the timer now, and starts the lock the rules ask for.",
+      "fields": {
+        "device_id": { "name": "Computer", "description": "The computer or computers to act on." }
+      }
     },
     "cancel_timer": {
       "name": "Cancel timer",
-      "description": "Ends the timer without locking the computer."
+      "description": "Ends the timer without locking the computer.",
+      "fields": {
+        "device_id": { "name": "Computer", "description": "The computer or computers to act on." }
+      }
     }
   },
   "exceptions": {

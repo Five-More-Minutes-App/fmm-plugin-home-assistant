@@ -90,6 +90,7 @@
       "name": "Starta timer",
       "description": "Startar tid på en dator. Att starta under en låsning hävs låsningen.",
       "fields": {
+        "device_id": { "name": "Dator", "description": "Datorn eller datorerna som ska påverkas." },
         "minutes": { "name": "Minuter", "description": "Hur länge den ska gå. Ange detta eller en tid att sluta vid, inte båda." },
         "until": { "name": "Till", "description": "Klockslaget att sluta vid, i hushållets tidszon." },
         "message": { "name": "Meddelande", "description": "En kort notering som visas på datorn, till exempel varför tid gavs." }
@@ -99,16 +100,23 @@
       "name": "Lägg till tid",
       "description": "Lägger till tid på en pågående timer.",
       "fields": {
+        "device_id": { "name": "Dator", "description": "Datorn eller datorerna som ska påverkas." },
         "minutes": { "name": "Minuter", "description": "Hur mycket som ska läggas till. Lämna tomt för de vanliga fem till." }
       }
     },
     "end_time": {
       "name": "Avsluta tiden nu",
-      "description": "Avslutar timern nu och startar den låsning som reglerna säger."
+      "description": "Avslutar timern nu och startar den låsning som reglerna säger.",
+      "fields": {
+        "device_id": { "name": "Dator", "description": "Datorn eller datorerna som ska påverkas." }
+      }
     },
     "cancel_timer": {
       "name": "Avbryt timer",
-      "description": "Avslutar timern utan att låsa datorn."
+      "description": "Avslutar timern utan att låsa datorn.",
+      "fields": {
+        "device_id": { "name": "Dator", "description": "Datorn eller datorerna som ska påverkas." }
+      }
     }
   },
   "exceptions": {

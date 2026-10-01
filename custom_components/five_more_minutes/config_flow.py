@@ -6,13 +6,13 @@ from collections.abc import Mapping
 from typing import Any
 from urllib.parse import urlsplit
 
-import voluptuous as vol
 from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.selector import TextSelector, TextSelectorConfig, TextSelectorType
 
 from .api import FiveMoreMinutes, FmmError, Me
 from .const import CONF_API_KEY, CONF_URL, DOMAIN, LOGGER, SCOPE_STATE
+from .schema import vol
 
 # A key of the right shape that opens nothing, used to tell a bad address from a bad key.
 _SHAPE_ONLY = f"fmmk_{'0' * 32}_{'A' * 43}"
