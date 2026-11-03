@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Set up against the hosted service, `https://api.fivemoreminutes.app`, with a key that names your home's internet address. The "only answers on your home network" error now says what to change in the portal.
+
 ## 1.0.0
 
 First release.

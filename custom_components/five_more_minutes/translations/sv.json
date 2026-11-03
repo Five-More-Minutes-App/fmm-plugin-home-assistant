@@ -3,13 +3,13 @@
     "step": {
       "user": {
         "title": "Anslut en dator",
-        "description": "Skapa en API-nyckel i Five More Minutes-portalen under Tillägg: välj datorn och kryssa i de behörigheter du vill att Home Assistant ska ha. Nyckeln öppnar just den datorn, och bara från ditt hemnätverk.",
+        "description": "Skapa en API-nyckel i Five More Minutes-portalen under Tillägg: välj datorn, kryssa i de behörigheter du vill att Home Assistant ska ha och välj \"Hemma, på vår egen internetuppkoppling\". Nyckeln öppnar just den datorn, och bara hemifrån.",
         "data": {
           "url": "Adress till Five More Minutes",
           "api_key": "API-nyckel"
         },
         "data_description": {
-          "url": "Där Home Assistant når den, till exempel http://192.168.1.10:5072.",
+          "url": "https://api.fivemoreminutes.app, eller den lokala adressen till en Five More Minutes-tjänst ni kör själva, till exempel http://192.168.1.10:5072.",
           "api_key": "Börjar med fmmk_. Den visas bara en gång, när du skapar den."
         }
       },
@@ -33,7 +33,7 @@
       "invalid_url": "Det där är ingen webbadress. Använd något som http://192.168.1.10:5072.",
       "invalid_key": "Det där ser inte ut som en Five More Minutes-nyckel. Den börjar med fmmk_ och är 81 tecken lång.",
       "invalid_auth": "Nyckeln godtogs inte. Den kan vara fel, återkallad eller ha gått ut.",
-      "network_only": "Five More Minutes svarar bara på ditt hemnätverk. Home Assistant måste vara på samma nätverk och använda den lokala adressen.",
+      "network_only": "Five More Minutes kände inte igen varifrån Home Assistant ringer. Öppna Tillägg i portalen, leta upp nyckeln och välj \"Ändra var den fungerar\": den måste ange ert hems internetadress (routern kan ha fått en ny).",
       "cannot_connect": "Det gick inte att nå Five More Minutes. Är det igång, och stämmer adressen?",
       "missing_state_permission": "Nyckeln saknar behörigheten state:read, som den här integrationen behöver. Skapa en ny nyckel med den ikryssad.",
       "unknown": "Något oväntat gick fel."

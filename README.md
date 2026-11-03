@@ -33,7 +33,9 @@ English and Swedish.
 ### 1. Make a key
 
 In the Five More Minutes portal open **Plugins**, choose the computer, name the key `Home Assistant`, and
-tick the permissions you want it to have:
+tick the permissions you want it to have. Under **Where will the plugin run?** keep **At home, on our own internet
+connection**: the portal fills in your home's internet address, and the key works only from there (and your home
+network). Do this at home, on your home connection, so the address it fills in is the right one.
 
 | Permission | Gives you |
 |---|---|
@@ -61,7 +63,7 @@ Or press **Add** on this plugin's page in the marketplace and the portal makes t
 
 **Settings → Devices & services → Add integration → Five More Minutes.** It asks for:
 
-- **Address of Five More Minutes**: where Home Assistant can reach it, e.g. `http://192.168.1.10:5072`. Typing `192.168.1.10:5072` is fine.
+- **Address of Five More Minutes**: `https://api.fivemoreminutes.app`. Only if you run the Five More Minutes service yourself, its local address instead, e.g. `http://192.168.1.10:5072` (typing `192.168.1.10:5072` is fine).
 - **API key**: the key from step 1.
 
 It checks both, and names the device after the computer.
@@ -159,7 +161,7 @@ when it is extended, `minutes` when the computer is locked.
 | You see | Do this |
 |---|---|
 | "The key was not accepted" | Wrong, revoked or expired. Make a new key in the portal. |
-| "only answers on your home network" | Home Assistant has to be on the same network as Five More Minutes, and use its local address. |
+| "did not recognise where Home Assistant is calling from" | The key does not name your home's internet address, or your router has been given a new one. In the portal: **Plugins → the key → Change where it works from**. |
 | "Could not reach Five More Minutes" | Is it running? Can Home Assistant's computer open the address? From a container, `localhost` is the container itself: use the real address. |
 | "does not have the … permission" | Make a new key with that permission ticked. |
 | "Not possible right now: Time is already running" | A timer is running. Use **Add time**, or **Cancel timer** first. |
