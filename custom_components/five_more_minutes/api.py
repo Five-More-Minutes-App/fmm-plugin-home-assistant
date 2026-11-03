@@ -365,8 +365,8 @@ async def _problem(response: aiohttp.ClientResponse) -> FmmError:
         if str(problem.get("type", "")).endswith("/local-network-only"):
             return FmmError(
                 "network-only",
-                "Five More Minutes only answers plugins on the local network. "
-                "Run this on the same network as the service.",
+                "Five More Minutes did not accept this key from where it is being used. "
+                "In the portal, make sure the key names your home's internet address.",
                 status=status,
             )
         return FmmError("forbidden", detail, status=status)

@@ -163,7 +163,7 @@ class MockFmm:
                 _problem(
                     403,
                     "Local network only",
-                    "Integration keys work only from the local network.",
+                    "This key works only from the home it was made for: the local network, or the home internet address written on the key in the portal.",
                     "https://fivemoreminutes.app/problems/local-network-only",
                 )
             )
