@@ -9,6 +9,9 @@ DOMAIN: Final = "five_more_minutes"
 LOGGER = logging.getLogger(__package__)
 
 CONF_URL: Final = "url"
+
+# The hosted service. Offered as the address when a computer is added; a family that runs the service itself changes it.
+HOSTED_URL: Final = "https://api.fivemoreminutes.app"
 CONF_API_KEY: Final = "api_key"
 
 # The permissions a key can hold. This integration needs the first; the others switch on the buttons

@@ -9,7 +9,7 @@
           "api_key": "API key"
         },
         "data_description": {
-          "url": "https://api.fivemoreminutes.app, or the local address of a Five More Minutes service you run yourself, such as http://192.168.1.10:5072.",
+          "url": "Keep the address already filled in. Change it only if you run the Five More Minutes service yourself, to its local address.",
           "api_key": "Starts with fmmk_. It is shown only once, when you make it."
         }
       },

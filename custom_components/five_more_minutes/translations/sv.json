@@ -9,7 +9,7 @@
           "api_key": "API-nyckel"
         },
         "data_description": {
-          "url": "https://api.fivemoreminutes.app, eller den lokala adressen till en Five More Minutes-tjänst ni kör själva, till exempel http://192.168.1.10:5072.",
+          "url": "Behåll adressen som redan är ifylld. Ändra den bara om ni kör Five More Minutes-tjänsten själva, till dess lokala adress.",
           "api_key": "Börjar med fmmk_. Den visas bara en gång, när du skapar den."
         }
       },

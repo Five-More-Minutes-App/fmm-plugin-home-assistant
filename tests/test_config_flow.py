@@ -90,6 +90,14 @@ async def test_says_what_is_wrong_and_lets_you_try_again(
     assert result["type"] is FlowResultType.CREATE_ENTRY
 
 
+async def test_the_hosted_service_is_offered_as_the_address(hass: HomeAssistant, service: FakeService) -> None:
+    result = await _start(hass)
+
+    url_field = next(k for k in result["data_schema"].schema if k.schema == CONF_URL)
+
+    assert url_field.default() == "https://api.fivemoreminutes.app"
+
+
 async def test_the_key_is_asked_for_as_a_password(hass: HomeAssistant, service: FakeService) -> None:
     result = await _start(hass)
 

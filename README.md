@@ -63,7 +63,7 @@ Or press **Add** on this plugin's page in the marketplace and the portal makes t
 
 **Settings → Devices & services → Add integration → Five More Minutes.** It asks for:
 
-- **Address of Five More Minutes**: `https://api.fivemoreminutes.app`. Only if you run the Five More Minutes service yourself, its local address instead, e.g. `http://192.168.1.10:5072` (typing `192.168.1.10:5072` is fine).
+- **Address of Five More Minutes**: already filled in with `https://api.fivemoreminutes.app`. Only if you run the Five More Minutes service yourself, change it to its local address, e.g. `http://192.168.1.10:5072` (typing `192.168.1.10:5072` is fine).
 - **API key**: the key from step 1.
 
 It checks both, and names the device after the computer.
