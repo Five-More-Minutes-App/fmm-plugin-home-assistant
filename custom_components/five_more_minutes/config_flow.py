@@ -11,7 +11,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.selector import TextSelector, TextSelectorConfig, TextSelectorType
 
 from .api import FiveMoreMinutes, FmmError, Me
-from .const import CONF_API_KEY, CONF_URL, DOMAIN, LOGGER, SCOPE_STATE
+from .const import CONF_API_KEY, CONF_URL, DOMAIN, HOSTED_URL, LOGGER, SCOPE_STATE
 from .schema import vol
 
 # A key of the right shape that opens nothing, used to tell a bad address from a bad key.
@@ -69,7 +69,7 @@ class FiveMoreMinutesConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
         """The first step: where Five More Minutes is, and the key."""
         errors: dict[str, str] = {}
-        url = ""
+        url = HOSTED_URL
 
         if user_input is not None:
             url = normalize_url(user_input[CONF_URL])

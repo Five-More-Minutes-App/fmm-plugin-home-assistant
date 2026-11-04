@@ -3,13 +3,13 @@
     "step": {
       "user": {
         "title": "Connect a computer",
-        "description": "Make an API key in the Five More Minutes portal under Plugins: choose the computer and tick the permissions you want Home Assistant to have. The key opens that one computer, from your home network only.",
+        "description": "Make an API key in the Five More Minutes portal under Plugins: choose the computer, tick the permissions you want Home Assistant to have, and choose \"At home, on our own internet connection\". The key opens that one computer, from your home only.",
         "data": {
           "url": "Address of Five More Minutes",
           "api_key": "API key"
         },
         "data_description": {
-          "url": "Where Home Assistant can reach it, for example http://192.168.1.10:5072.",
+          "url": "Keep the address already filled in. Change it only if you run the Five More Minutes service yourself, to its local address.",
           "api_key": "Starts with fmmk_. It is shown only once, when you make it."
         }
       },
@@ -33,7 +33,7 @@
       "invalid_url": "That is not a web address. Use something like http://192.168.1.10:5072.",
       "invalid_key": "That does not look like a Five More Minutes key. It starts with fmmk_ and is 81 characters long.",
       "invalid_auth": "The key was not accepted. It may be wrong, revoked or expired.",
-      "network_only": "Five More Minutes only answers on your home network. Home Assistant has to be on the same network, using its local address.",
+      "network_only": "Five More Minutes did not recognise where Home Assistant is calling from. In the portal, open Plugins, find this key and choose \"Change where it works from\": it has to name your home's internet address (your router may have been given a new one).",
       "cannot_connect": "Could not reach Five More Minutes. Is it running, and is the address right?",
       "missing_state_permission": "The key does not have the state:read permission, which this integration needs. Make a new key with it ticked.",
       "unknown": "Something unexpected went wrong."
