@@ -3,7 +3,7 @@
   "id": "home-assistant",
   "name": "Home Assistant",
   "description": "Start, extend and stop the timer from Home Assistant, follow whether time is running and how much is left, and run automations when time starts, is added, ends, or the computer is locked.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Five More Minutes",
     "url": "https://github.com/five-more-minutes"

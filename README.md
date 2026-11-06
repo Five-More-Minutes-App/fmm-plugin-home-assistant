@@ -5,7 +5,7 @@ See and control the screen time on your child's computer from Home Assistant.
 usable; this integration puts it in your dashboards and automations: start a timer, add time, end it, and
 react when time starts, runs out, or the computer is locked.
 
-Free, open source (MIT). It talks only to Five More Minutes on your own network, and installs nothing else.
+Free, open source (MIT). It talks only to Five More Minutes, with a key that works from your home only, and installs nothing else.
 
 ## What you get
 
@@ -67,6 +67,30 @@ Or press **Add** on this plugin's page in the marketplace and the portal makes t
 - **API key**: the key from step 1.
 
 It checks both, and names the device after the computer.
+
+## Dashboard card
+
+The integration brings its own card, so there is nothing else to install. On a dashboard: **Edit → Add card →
+Five More Minutes**, and choose the computer.
+
+It shows the countdown on a ring, when the time ends and any message, or how long a lock has left, and whether the
+computer is connected. Under it are the controls the key allows: start time (with an optional message for the
+screen), add time, end now (locks the computer, as your rules say) and cancel the timer (stops without a lock). A key
+that can only watch shows no buttons.
+
+In YAML:
+
+```yaml
+type: custom:five-more-minutes-card
+device_id: 0123456789abcdef      # choose the computer in the editor
+title: Elliot's laptop           # optional; the computer's name otherwise
+start_minutes: [15, 30, 45, 60]  # optional
+add_minutes: [5, 15, 30]         # optional
+show_message: true               # optional
+```
+
+The card can do what the key can do, which is not everything the portal can: approving a child's request, writing to
+them, and the rules stay in the portal and the app.
 
 ## Examples
 
@@ -150,7 +174,7 @@ when it is extended, `minutes` when the computer is locked.
 
 ## Security
 
-- The key opens **one computer**, from your **home network only**. If it leaked, whoever held it would need to be on your network, and could do only what you ticked.
+- The key opens **one computer**, and only from your **home**: your home network, or the home internet address the key names. If it leaked, whoever held it would need to be at your home, and could do only what you ticked.
 - It is stored in Home Assistant's config entry like any integration's credentials, asked for as a password field, never put in a log line, an error message, or the **diagnostics** download (which also hides the address, the computer's name and any message).
 - The client refuses redirects, so the key can never be sent to a place the service redirects to.
 - Actions check that the key may do what is asked *before* asking: a key without `timer:start` gets a clear message, not a failed request.
