@@ -28,6 +28,8 @@ class FmmSensorDescription(SensorEntityDescription):
     """A sensor and how to read it."""
 
     value: Callable[[State, datetime], datetime | int | str | None]
+    # When what ends began, for the dashboard card's ring: how far through it is.
+    started: Callable[[State, datetime], str | None] | None = None
 
 
 def _message(state: State, now: datetime) -> str | None:
@@ -40,12 +42,14 @@ DESCRIPTIONS = (
         translation_key="timer_ends",
         device_class=SensorDeviceClass.TIMESTAMP,
         value=lambda state, now: timer_ends(state) if timer_running(state, now) else None,
+        started=lambda state, now: state.timer.starts_at if timer_running(state, now) and state.timer else None,
     ),
     FmmSensorDescription(
         key="lock_ends",
         translation_key="lock_ends",
         device_class=SensorDeviceClass.TIMESTAMP,
         value=lambda state, now: lock_ends(state) if locked(state, now) else None,
+        started=lambda state, now: state.lock.starts_at if locked(state, now) and state.lock else None,
     ),
     FmmSensorDescription(
         key="minutes_left",
@@ -84,3 +88,11 @@ class FmmSensor(FmmEntity, SensorEntity):
     @property
     def native_value(self) -> datetime | int | str | None:
         return self.entity_description.value(self.state_now, self.now)
+
+    @property
+    def extra_state_attributes(self) -> dict[str, str] | None:
+        started = self.entity_description.started
+        if started is None:
+            return None
+        at = started(self.state_now, self.now)
+        return {"started_at": at} if at is not None else None

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed, ConfigEntryError, ConfigEntryNotReady
@@ -25,10 +27,31 @@ PLATFORMS: list[Platform] = [
 CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 
+CARD_URL = f"/{DOMAIN}/five-more-minutes-card.js"
+CARD_FILE = Path(__file__).parent / "frontend" / "five-more-minutes-card.js"
+
+
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
-    """Registers the services, which act on a computer by its device."""
+    """Registers the services, which act on a computer by its device, and the dashboard card."""
     async_setup_services(hass)
+    await _async_register_card(hass)
     return True
+
+
+async def _async_register_card(hass: HomeAssistant) -> None:
+    """Serves the card from the integration and loads it on every dashboard, so it is under "Add card" at once.
+
+    Skipped where Home Assistant has no web server or frontend (tests, a bare core): the integration works without it.
+    """
+    if hass.http is None or "frontend" not in hass.config.components:
+        return
+    from homeassistant.components.frontend import add_extra_js_url
+    from homeassistant.components.http import StaticPathConfig
+
+    # The file's age in the address, so a browser fetches the new card after an update instead of its cached one.
+    changed = int((await hass.async_add_executor_job(CARD_FILE.stat)).st_mtime)
+    await hass.http.async_register_static_paths([StaticPathConfig(CARD_URL, str(CARD_FILE), cache_headers=False)])
+    add_extra_js_url(hass, f"{CARD_URL}?v={changed}")
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: FmmConfigEntry) -> bool:
