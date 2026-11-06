@@ -54,5 +54,6 @@ def test_the_card_speaks_both_languages_alike() -> None:
 
 def test_the_card_calls_only_actions_that_exist() -> None:
     script = CARD_FILE.read_text(encoding="utf-8")
-    called = set(re.findall(r'\["(\w+)", ', script))
+    # Each control hands back [action, data]: `=> ["end_time", {}]`, or `return ["start_timer", ...]`.
+    called = set(re.findall(r'(?:=>|return) \["(\w+)", ', script))
     assert called == {"start_timer", "extend_timer", "end_time", "cancel_timer"}
