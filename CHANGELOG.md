@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.1
+
+- Nothing in what the integration does has changed. This is the first release HACS offers to everyone: 1.1.0 was published as a pre-release.
+- The version is the same in every file that states it (`pyproject.toml` still said 1.0.0). A test keeps them the same, and a check on every pull request asks for a new version when the integration has changed since the last release.
+
 ## 1.1.0
 
 - A dashboard card comes with the integration: the countdown on a ring, the lock, whether the computer is connected, and buttons to start (with a message), add time, end and cancel, as far as the key allows. **Add card → Five More Minutes.**

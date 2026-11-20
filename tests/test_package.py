@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+import tomllib
 from pathlib import Path
 
 import yaml
@@ -137,6 +138,17 @@ def test_the_manifest_is_what_home_assistant_and_hacs_need() -> None:
     assert manifest["requirements"] == [], "nothing to install"
     assert re.fullmatch(r"\d+\.\d+\.\d+", manifest["version"])
     assert hacs["name"] == "Five More Minutes"
+
+
+def test_the_version_is_the_same_everywhere_it_is_written() -> None:
+    version = json.loads((COMPONENT / "manifest.json").read_text(encoding="utf-8"))["version"]
+    plugin = json.loads((ROOT / "fmm-plugin.json").read_text(encoding="utf-8"))
+    project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
+    newest = re.search(r"^## (\S+)", (ROOT / "CHANGELOG.md").read_text(encoding="utf-8"), re.MULTILINE)
+
+    assert plugin["version"] == version, "fmm-plugin.json is what the marketplace shows"
+    assert project["version"] == version, "pyproject.toml"
+    assert newest is not None and newest.group(1) == version, "the newest entry in CHANGELOG.md is this version"
 
 
 def test_the_service_schemas_cap_what_can_be_asked() -> None:

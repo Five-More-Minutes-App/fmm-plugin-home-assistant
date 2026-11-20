@@ -63,3 +63,33 @@ jobs:
       - run: npm ci
         working-directory: registry
       - run: node registry/scripts/validate.mjs --manifest fmm-plugin.json
+
+  version:
+    # A change to the integration is a new version. If the files a Home Assistant gets differ from the last release under the
+    # same number, HACS has nothing to offer as an update and the marketplace shows a version that is not the one installed.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          # Every tag, to find the last release.
+          fetch-depth: 0
+      - name: The version is higher than the last release when the integration has changed
+        run: |
+          set -euo pipefail
+          last="$(git tag --list 'v*' --sort=-v:refname | head -1)"
+          if [ -z "$last" ]; then
+            echo "No release yet."
+            exit 0
+          fi
+          version="$(python3 -c "import json; print(json.load(open('custom_components/five_more_minutes/manifest.json'))['version'])")"
+          if git diff --quiet "$last" HEAD -- custom_components fmm-plugin.json; then
+            echo "Nothing in the integration has changed since $last."
+            exit 0
+          fi
+          highest="$(printf '%s\n%s\n' "${last#v}" "$version" | sort -V | tail -1)"
+          if [ "$version" = "${last#v}" ] || [ "$highest" != "$version" ]; then
+            echo "::error::The integration has changed since $last but the version is $version. Raise it in manifest.json, fmm-plugin.json and pyproject.toml, and add it to CHANGELOG.md."
+            exit 1
+          fi
+          echo "The integration has changed since $last, and the version is $version."
